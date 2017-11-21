@@ -18,6 +18,14 @@ sap.ui.define([
 		 * @override
 		 */
 		init: function() {
+<<<<<<< HEAD
+			// call the base component's init function
+			var oApplication = new Application(this);
+			oApplication.init();
+			UIComponent.prototype.init.apply(this, arguments);
+			// create the views based on the url/hash
+			this.getRouter().initialize();
+=======
 			//call application init function		
 			var oApplication = new Application(this);
 			oApplication.init();
@@ -27,6 +35,7 @@ sap.ui.define([
 			
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
+>>>>>>> de250bfa8b58e2a9b7195b60a5423efb846a64c3
 		}
 	});
 });

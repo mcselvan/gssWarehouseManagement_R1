@@ -57,7 +57,14 @@ sap.ui.define([
 		getEntitySetModel: function(){
 			return this.getOwnerComponent().getModel("entitySetProperties");
 		},
+<<<<<<< HEAD
+		
+		getFragmentControllerModel: function(){
+			return this.getOwnerComponent().getModel("fragmentControllerProperties");	
+		},
+=======
 
+>>>>>>> de250bfa8b58e2a9b7195b60a5423efb846a64c3
 		/**
 		 * Convenience method
 		 * @returns {object} the application controller

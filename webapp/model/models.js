@@ -8,7 +8,11 @@ sap.ui.define([
 
 		createDeviceModel: function() {
 			var oModel = new JSONModel(Device);
+<<<<<<< HEAD
+			oModel.setDefaultBindingMode("OneWay");
+=======
 			oModel.setDefaultBindingMode("twoWay");
+>>>>>>> de250bfa8b58e2a9b7195b60a5423efb846a64c3
 			return oModel;
 		}
 
