@@ -62,6 +62,41 @@ sap.ui.define([
 		getFragmentControllerModel: function(){
 			return this.getOwnerComponent().getModel("fragmentControllerProperties");	
 		},
+		/**
+		 * Convenience method
+		 * @returns {object} the application controller
+		 */
+		getApplication: function() {
+
+		return this.getGlobalModel().getProperty("/application");
+		},
+		
+		getComponent: function() {
+			return this.getOwnerComponent();
+		},
+			/**
+			 * Event handler when the share by E-Mail button has been clicked
+			 * @public
+			 */
+			onShareEmailPress : function () {
+				var oViewModel = (this.getModel("objectView") || this.getModel("worklistView"));
+				sap.m.URLHelper.triggerEmail(
+					null,
+					oViewModel.getProperty("/shareSendEmailSubject"),
+					oViewModel.getProperty("/shareSendEmailMessage")
+				);
+			}
+
+		});
+
+	}
+);
+=======
+<<<<<<< HEAD
+		
+		getFragmentControllerModel: function(){
+			return this.getOwnerComponent().getModel("fragmentControllerProperties");	
+		},
 =======
 
 >>>>>>> de250bfa8b58e2a9b7195b60a5423efb846a64c3
@@ -94,3 +129,4 @@ sap.ui.define([
 
 	}
 );
+>>>>>>> 72c8c8c0a7f415fd41d6a12f28ce10c9424cf480

@@ -34,6 +34,106 @@ sap.ui.define(["sap/ui/base/Object",
 				error: function(oData){
 					promise.reject(oData);
 				}
+			});
+			return promise;
+		},
+		//This odata read function write return value into global variable to handle later in UI
+		oCallRead: function(sFunction, oOwnerComponent, oGlobalModel) {
+			//var oModel = oOwnerComponent.getModel();
+			var oRfData;
+			oOwnerComponent.read(sFunction, {
+				success: function(oRetrievedResult) {
+					//return odata result 
+					oRfData = oRetrievedResult.results;
+					oGlobalModel.setProperty("/oDataResult", oRfData);
+					// this.oCallEnd(oGlobalModel);
+				},
+				error: function(oError) {
+					return "";
+				}
+			});
+			return oRfData;
+		},
+
+		oCallEnd: function(oGlobalModel) {
+			oGlobalModel.setProperty("/oDataResult", this._oResultData);
+
+		},
+
+		//handl multiple request
+		oCallDifferedMultiple: function(sFunction, oOwnerComponent) {
+			return new Promise(function(fnResolve, fnReject) {
+				var oRfData;
+				//var sFunction = "/configurationsSet",
+				//	oModel = oOwnerComponent.getModel();
+				var oModel = oOwnerComponent;
+				this._iOpenCallsCount++;
+				var fnOnError = function() {
+					fnReject();
+				}.bind(this);
+				var fnOnSuccess = function(oRetrievedResult) {
+					//return odata result 
+					oRfData = oRetrievedResult.results;
+					var oGlobalModel = oOwnerComponent.getModel("globalProperties");
+					oGlobalModel.setProperty("/oDataResult", oRfData);
+					// this.oCallEnd(oGlobalModel);
+					//	this._callEnded(true, oGlobalModel);
+					// A success message is only sent when the last request has returned. Thus, when the user sents several requests via swipe, only one
+					// message toast is sent; this represents the request that came back as last.
+					if (this._iOpenCallsCount === 0) {
+						var oResourceBundle = oOwnerComponent.getModel("i18n").getResourceBundle(),
+							sSuccessMessage = "";
+						sSuccessMessage = oResourceBundle.getText("ymsg.sucssfullCallMessageToast");
+						sap.ui.require(["sap/m/MessageToast"], function(MessageToast) {
+							MessageToast.show(sSuccessMessage);
+						});
+					}
+					fnResolve();
+				}.bind(this);
+				oModel.callFunction(sFunction, {
+					method: "POST",
+					groupId: "oDataCall"
+				});
+
+				oModel.submitChanges({
+					groupId: "oDataCall",
+					success: fnOnSuccess,
+					error: fnOnError
+				});
+			}.bind(this));
+		},
+
+		// This method is called when a backend call has finished.
+		// bSuccess states whether the call was successful
+		// oGlobalModel is the global JSON model of the app
+		_callEnded: function(bSuccess, oGlobalModel) {
+			// Book-keeping:
+			this._iOpenCallsCount--;
+			this._bOneWaitingSuccess = bSuccess || this._bOneWaitingSuccess;
+			if (this._iOpenCallsCount === 0) { // When we are not waiting for another call
+				if (this._bOneWaitingSuccess) { // At least one PO was approved/rejected successfully, therefore the list should be refreshed
+					this._bOneWaitingSuccess = false;
+				} else {
+					oGlobalModel.setProperty("/isBusyApproving", false); // As no refresh is triggered in this case, we reset the busy status immediately.
+				}
+			}
+		}
+	});
+});
+=======
+<<<<<<< HEAD
+		oCallReadDeferred: function(sEntityName, oComponent, aFilters) {
+			var promise = jQuery.Deferred(),
+				oDataModel = oComponent.getModel();
+
+			oDataModel.read(sEntityName, {
+				filters: aFilters,
+				success: function(oData) {
+					promise.resolve(oData);
+				}.bind(this),
+				error: function(oData){
+					promise.reject(oData);
+				}
 =======
 		oCallReadDeferred:  function(sEntitySet,oComponent) {
 			var promise = jQuery.Deferred(),
@@ -135,3 +235,4 @@ sap.ui.define(["sap/ui/base/Object",
 		}
 	});
 });
+>>>>>>> 72c8c8c0a7f415fd41d6a12f28ce10c9424cf480

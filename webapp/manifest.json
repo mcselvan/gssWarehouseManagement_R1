@@ -44,6 +44,67 @@
 	"sap.ui5": {
 		"rootView": {
 <<<<<<< HEAD
+			"viewName": "gss.newWarehouseManage_R1.view.MainView",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "gss.newWarehouseManage_R1.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZWM_RF_PROCESS_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"viewPath": "gss.newWarehouseManage_R1.view",
+				"controlId": "wmApp"
+			},
+			"targets": {
+				"Main": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "MainView",
+					"title": "Main View"
+				}
+			}
+		}
+	}
+}
+=======
+<<<<<<< HEAD
 			"viewName": "gss.newWarehouseManage_R1.view.App",
 			"type": "XML"
 		},
@@ -182,3 +243,4 @@
 		}
 	}
 }
+>>>>>>> 72c8c8c0a7f415fd41d6a12f28ce10c9424cf480

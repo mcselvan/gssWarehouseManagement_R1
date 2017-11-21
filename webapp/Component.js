@@ -19,6 +19,21 @@ sap.ui.define([
 		 */
 		init: function() {
 <<<<<<< HEAD
+					// call the base component's init function
+			var oApplication = new Application(this);
+			oApplication.init();
+			
+					UIComponent.prototype.init.apply(this, arguments);
+
+			
+	
+		
+		
+		}
+	});
+});
+=======
+<<<<<<< HEAD
 			// call the base component's init function
 			var oApplication = new Application(this);
 			oApplication.init();
@@ -39,3 +54,4 @@ sap.ui.define([
 		}
 	});
 });
+>>>>>>> 72c8c8c0a7f415fd41d6a12f28ce10c9424cf480
