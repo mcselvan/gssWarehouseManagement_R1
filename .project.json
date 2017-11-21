@@ -24,6 +24,14 @@
       "templateId": "servicecatalog.connectivityComponent",
       "templateVersion": "0.0.0",
       "dateTimeStamp": "Sat, 11 Nov 2017 08:51:34 GMT"
+<<<<<<< HEAD
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Mon, 20 Nov 2017 13:24:48 GMT"
+=======
+>>>>>>> de250bfa8b58e2a9b7195b60a5423efb846a64c3
     }
   ],
   "codeCheckingTriggers": {

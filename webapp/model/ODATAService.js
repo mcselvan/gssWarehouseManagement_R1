@@ -21,6 +21,20 @@ sap.ui.define(["sap/ui/base/Object",
 		},
 		//The Deferred object, introduced in jQuery 1.5, 
 		//is a chainable utility object created by calling the jQuery.Deferred() method.
+<<<<<<< HEAD
+		oCallReadDeferred: function(sEntityName, oComponent, aFilters) {
+			var promise = jQuery.Deferred(),
+				oDataModel = oComponent.getModel();
+
+			oDataModel.read(sEntityName, {
+				filters: aFilters,
+				success: function(oData) {
+					promise.resolve(oData);
+				}.bind(this),
+				error: function(oData){
+					promise.reject(oData);
+				}
+=======
 		oCallReadDeferred:  function(sEntitySet,oComponent) {
 			var promise = jQuery.Deferred(),
 				oDataModel = oComponent.getModel(),
@@ -34,6 +48,7 @@ sap.ui.define(["sap/ui/base/Object",
 					promise.resolve(oData);
 				}.bind(this)
 				
+>>>>>>> de250bfa8b58e2a9b7195b60a5423efb846a64c3
 			});
 			return promise;
 		},
